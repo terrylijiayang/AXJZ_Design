@@ -1,0 +1,113 @@
+//list相关样式
+.card-head {
+  min-height: 500px;
+  &_body {
+    min-height: 500px;
+    display: flex;
+  }
+}
+.table-style {
+  color: black;
+}
+
+.table-control button {
+  padding: 0;
+}
+
+.page-style {
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+.table-control th {
+  text-align: center;
+  background: #f2f2f2 !important;
+}
+
+.span-control-list {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.span-control-list .el-tree-node:hover {
+  background-color: var(--mainColor) !important;
+  color: #ffffff !important;
+  cursor: pointer;
+}
+
+.span-control-list .card-head {
+  min-height: 100%;
+}
+
+.span-control-list .el-tree-node > .el-tree-node__children {
+  overflow: visible;
+}
+
+.span-control-list th {
+  color: black;
+}
+
+.span-control-list .el-dialog__title {
+  font-size: 14px;
+}
+
+.span-control-list .el-tree-node__content {
+  display: block;
+}
+
+.span-control-list .el-tree-node__expand-icon {
+  display: none;
+}
+
+.span-control-list .el-tree-node__content.is-active {
+  background-color: var(--mainColor) !important;
+}
+
+.span-control-list .el-tree-node__content {
+  line-height: 35px;
+  border-bottom: 1px solid #ffffff;
+  height: 35px;
+}
+
+.span-control-list .el-tree-node__label {
+  font-size: 12px;
+}
+
+.span-control-list .el-tree__empty-text {
+  font-size: 12px;
+}
+
+.span-control-list .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+  background-color: var(--mainColor) !important;
+  color: white;
+}
+
+.list-table-expand {
+  font-size: 0;
+}
+.list-table-expand label {
+  width: 90px;
+  color: #99a9bf;
+}
+.list-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 50%;
+}
+
+.display-form {
+  font-size: 0;
+}
+.display-form label {
+  width: 90px;
+  color: #99a9bf;
+}
+.display-form .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 50%;
+}
+
+
+
+//form相关样式

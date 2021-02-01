@@ -1,0 +1,93 @@
+@import "element-ui";
+@import "list-form";
+
+body {
+  cursor: default;
+  font-size: 14px;
+}
+
+ul li {
+  list-style: none;
+}
+
+:root {
+  --mainColor: #1890ff;
+}
+
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+// 改变全局 element 样式
+.el-menu-item-group__title {
+  padding: 0 !important;
+}
+
+.el-card__header {
+  padding: 10px 20px;
+}
+
+.el-submenu .el-menu-item {
+  min-width: 180px;
+  height: 46px;
+  line-height: 46px;
+}
+
+.el-dialog .el-dialog__body {
+  border-top: 1px solid #dcdfe6;
+  border-bottom: 1px solid #dcdfe6;
+  max-height: calc(100vh - 281px);
+  overflow-y: auto;
+}
+
+.el-submenu .el-submenu__title {
+  height: 46px;
+  line-height: 46px;
+}
+
+.menu_tabs {
+  .el-tabs__nav-wrap:after {
+    background-color: transparent;
+  }
+}
+
+.edui-container {
+  width: 100% !important;
+}
+
+.ge_pop {
+  max-height: 350px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.el-main {
+  height: 100%;
+}
+
+.el-tabs__item.is-active {
+  outline: none;
+}
+
+.el-input__inner {
+  box-shadow: none;
+}
+
+.ge_iframe {
+  border: 1px solid #cccccc;
+}
+
+.global_search_btn .el-button:hover {
+  color: $bg_main_color;
+  //border-color: mix($font_main_color, $bg_main_color, 70%);
+  border-radius: 0;
+  background-color: mix($font_main_color, $bg_main_color, 90%);
+}
