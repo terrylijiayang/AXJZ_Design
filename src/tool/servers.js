@@ -53,7 +53,7 @@ export class BaseApi {
       const param = new window.FormData();
       for (const key in body) {
         if ({}.hasOwnProperty.call(body, key))
-          param.append(key, body[key])
+          param.append(key, body[key]);
       }
 
       fileList.forEach(file => param.append(fileKey, file));

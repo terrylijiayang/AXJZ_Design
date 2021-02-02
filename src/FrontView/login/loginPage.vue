@@ -44,7 +44,6 @@
     </div>
   </div>
 </template>
-
 <script>
   import {loginService} from "./loginService";
   import crypto from 'crypto';
@@ -58,7 +57,7 @@
             password:'',
           },
           rules: {
-           /* phone:[{
+            /*phone:[{
               required: true,
               pattern: /^1[34578]\d{9}$/,//可以写正则表达式
               message: '目前只支持中国大陆的手机号码',
@@ -94,7 +93,7 @@
           this.$refs['loginForm'].validate((valid) => {
             if(valid){
               this.$store.dispatch('accountLoginSubmit',this.loginForm).then(() => {
-                this.$router.push({path:'/homepage'});
+                this.$router.push({path:'/home'});
               }).catch(err => {})
             }
           })
@@ -105,7 +104,6 @@
       }
     }
 </script>
-
 <style scoped>
   .title {
     text-align: center;
@@ -125,7 +123,7 @@
   .mh-login {
     width: 100%;
     height: 100%;
-    background-image: url("../../assets/images/背景.png");
+    background-image: url("../../assets/images/back.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -140,6 +138,7 @@
   img {
     width: 960px;
   }
+
 
   .login-container {
     border-radius: 5px;
@@ -190,6 +189,7 @@
     font-size: 17px;
     color: #d70000;
     letter-spacing: 2px;
+    cursor: pointer;
   }
 
 </style>

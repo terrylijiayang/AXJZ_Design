@@ -8,11 +8,13 @@ import MintUI from  'mint-ui'
 import 'mint-ui/lib/style.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import {store} from './store'
+import echarts from 'echarts'
 
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
+Vue.prototype.$echarts = echarts
 
 /* eslint-disable no-new */
 new Vue({

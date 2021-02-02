@@ -3,26 +3,39 @@
     <el-container>
       <el-header>
         <el-row>
-          <el-col :offset="3" :span="2">
-            <router-link :to="{ path: '/homepage' }">
+          <el-col :offset="3" :span="7">
+            <router-link :to="{ path: '/index' }">
               <img class="logo" src="../../assets/images/logo.jpg" >
             </router-link>
+            <div style="display: inline-block;vertical-align: top;">
+              您好，欢迎进入愛心捐助管理平台！
+            </div>
           </el-col>
-          <el-col :offset="12" :span="1" style="text-align: center">
+          <el-col :offset="8":span="6">
+            <el-image class="avatar" :src='this.avatarPath' v-if="isLogin" @click.native="goPersonalCenter()" style="  border: 1px solid #888;border-radius: 100px;vertical-align: middle;"></el-image>
+            <span>{{userName}}</span>
             <el-dropdown>
-              <i class="el-icon-setting" style="margin-right: 15px"></i>
+              <!-- <i class="el-icon-setting" style="margin-right: 15px"></i>
+          -    <el-dropdown-menu slot="dropdown">
+                 <el-dropdown-item @click.native.prevent="returnLogin" v-if="!isLogin">登录</el-dropdown-item>
+                 <el-dropdown-item @click.native.prevent="returnRegiste" v-if="!isLogin">注册</el-dropdown-item>
+                 <el-dropdown-item v-if="isLogin" >
+                   <span @click="exit()">退出</span>
+                 </el-dropdown-item>
+               </el-dropdown-menu>-->
+              <i class="el-icon-arrow-down el-icon--right"></i>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item @click.native.prevent="returnLogin" v-if="!isLogin">登录</el-dropdown-item>
-                <el-dropdown-item @click.native.prevent="returnRegiste" v-if="!isLogin">注册</el-dropdown-item>
-                <el-dropdown-item v-if="isLogin">退出</el-dropdown-item>
+                <el-dropdown-item>
+                  <router-link :to="{ path: '/index' }" style="text-decoration: none;color: #000;">首页
+                  </router-link></el-dropdown-item>
+                <el-dropdown-item>
+                  <div @click="goPersonalCenter()">个人信息</div>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <div @click="exit()">退出系统</div>
+                </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
-          </el-col>
-          <el-col :span="1">
-            <el-image class="avatar" :src='this.avatarPath' v-if="isLogin" @click.native="goPersonalCenter()"></el-image>
-          </el-col>
-          <el-col :span="2">
-            <span>{{userName}}</span>
           </el-col>
         </el-row>
       </el-header>
@@ -34,17 +47,24 @@
             v-model="search">
           </el-input>
         </el-col>
-        <el-col :offset="8" :span="2">
+        <el-col :offset="9" :span="2">
           <el-button round @click="goApplication()">申请救助</el-button>
+          <!--<el-button round @click="goApplication()">每日签到</el-button>-->
         </el-col>
+
 
       </el-row>
     </el-container>
+    <el-scrollbar >
+        <router-view></router-view>
+    </el-scrollbar>
+
   </div>
 </template>
 
 <script>
   import path from '../../../config/dev.env'
+  import {Msg} from "../../tool/message";
   export default {
     //name: "header",
     data(){
@@ -62,8 +82,8 @@
       if(this.$store.getters.isLogin){
         this.isLogin = true;
         this.userName = this.$store.getters.userInfo.realName;
-        this.avatarPath = path.IMAGE_PATH + this.$store.getters.userInfo.avatarPath;
-        // this.avatarPath = require('../../../../' + this.$store.getters.userInfo.avatarPath);
+        // this.avatarPath = path.IMAGE_PATH + this.$store.getters.userInfo.avatarPath;
+        this.avatarPath = require('../../assets/images/' + this.$store.getters.userInfo.avatarPath);
 
       }
     },
@@ -82,6 +102,10 @@
       },
       goPersonalCenter(){
         this.$router.push({path:'/personalCenter'})
+      },
+      exit(){
+        this.$router.push({path: '/'});
+        Msg.success("退出登录")
       }
     }
   }
@@ -98,7 +122,7 @@
   .logo{
     width: 50px;
     height: 50px;
-    margin-right: 1100px;
+    display: inline-block;
   }
   .avatar{
     width: 40px;

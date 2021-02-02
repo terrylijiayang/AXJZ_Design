@@ -1,17 +1,26 @@
 <template>
     <div class="application">
-      <ahead ref="ahead"></ahead>
       <el-container>
         <el-main class="a-main">
           <el-form ref="applicationForm" :model="applicationForm" :rules="rule">
-            <!--<el-row class="coverImage">-->
-              <!--<el-col :offset="3" :span="21">-->
-                <!--<el-form-item label="项目封面">-->
-
-                  <!--<div class="el-upload__tip">请选择上传项目封面，只能上传jpg/png文件，且不超过500kb,务必上传真实信息</div>-->
-                <!--</el-form-item>-->
-              <!--</el-col>-->
-            <!--</el-row>-->
+            <el-row class="coverImage">
+              <el-col :offset="3" :span="21">
+                <el-form-item label="项目封面">
+                  <el-upload
+                    class="upload-demo"
+                    action=""
+                    :on-change="handleChange"
+                    :on-remove="handleRemove"
+                    :file-list="proImgs"
+                    :limit="1"
+                    :auto-upload="false"
+                    list-type="picture">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                    <div slot="tip" class="el-upload__tip">请选择上传项目封面，只能上传jpg/png文件，且不超过500kb,务必上传真实信息</div>
+                  </el-upload>
+                </el-form-item>
+              </el-col>
+            </el-row>
             <el-row class="name">
               <el-col :offset="3" :span="12">
                 <el-form-item label="项目名称" prop="projectName">
@@ -54,7 +63,7 @@
             <el-row class="budget">
               <el-col :offset="3" :span="12">
                 <el-form-item label="项目预算">
-                  <el-input type="input" v-model="applicationForm.projectBudget"
+                  <el-input type="input" v-model="applicationForm.budget"
                             placeholder="选填" class="projectBudget"
                   ></el-input>
                 </el-form-item>
@@ -111,7 +120,6 @@
 </template>
 
 <script>
-  import head from '../../FrontView/header/header'
   import {utils} from "../../tool/utils";
   import {Msg} from "../../tool/message";
   import {mainService} from "./mainService";
@@ -129,14 +137,15 @@
             projectName:'',
             introduce:'',
             projectPlan:'',
-            projectBudget:'',
+            budget:'',
             budgetBreakdown:'',
             startingTime:'',
             endingTime:'',
-            images:[],
           },
+          proImgs: [],//项目图片
+          //images:[],
           rule:{
-            projectName: [
+            /*projectName: [
               {required: true, message: '请输入项目名称', trigger: 'blur'},
               {validator: utils.validateString(0, 1000, /^.*$/, "输入的数据不正确，请检查"), trigger: 'blur'}
             ],
@@ -158,17 +167,16 @@
             endingTime:[
               {required: true, message: '请选择结束时间', trigger: 'change'},
               {validator: this.checkDate(), trigger: 'change'},
-            ]
-          }
+            ]*/
+          },
         }
       },
       components:{
-        ahead:head
       },
       mounted() {
         if(this.$store.getters.isLogin == false){
           Msg.warn('请先登录');
-          this.$router.push({path:'/login'})
+          this.$router.push({path:'/'})
         }
       },
       methods:{
@@ -181,13 +189,21 @@
             }
           }
         },
+        handleChange(file,fileList) {
+          this.proImgs = fileList;
+        },
+        handleRemove(file, fileList) {
+          this.proImgs = []
+        },
         submitApplicationForm(){
-
           this.$refs['applicationForm'].validate((valid) => {
             if(valid){
               this.applicationForm.userId = this.$store.getters.userInfo.userId;
-              mainService.submitApplication(this.applicationForm).then(res => {
-                console.log(res)
+              this.applicationForm.budget=parseFloat(this.applicationForm.budget);
+              mainService.submitApplication(this.applicationForm,this.proImgs).then(res => {
+                if(res.data){
+                    Msg.success("提交成功");
+                }
               })
             }
           })
@@ -222,5 +238,8 @@
   }
   .endingTime{
     width: 380px;
+  }
+  .el-form-item__content .upload-demo{
+    width: 450px !important;
   }
 </style>

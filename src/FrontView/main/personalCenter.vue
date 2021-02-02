@@ -1,26 +1,29 @@
 <template>
     <div class="personalCenter">
-      <pchead></pchead>
+      <!--个人信息-->
+      <div class="back">
+        <i class="el-icon-user-solid"></i>用户信息
+      </div>
       <el-container>
         <el-main>
           <el-row>
             <el-col :offset="3" :span="12">
-              <el-card>
+              <el-card style="background: rgba(242, 242, 242, 0.498039215686275);">
                 <el-row class="realName">
                   <el-col :span="3" :push="1"><span>姓名：</span></el-col>
-                  <el-col :span="4"><span>吴浩铭</span></el-col>
+                  <el-col :span="4"><span>{{this.realName}}</span></el-col>
                 </el-row>
                 <el-row class="nickName">
                   <el-col :span="3" :push="1"><span>昵称：</span></el-col>
-                  <el-col :span="4"><span>Hawrk</span></el-col>
+                  <el-col :span="4"><span>{{this.nickName}}</span></el-col>
                 </el-row>
                 <el-row class="phone">
-                  <el-col :span="4"><span>联系方式：</span></el-col>
-                  <el-col :span="4"><span>18875213962</span></el-col>
+                  <el-col :span="3"><span>联系方式：</span></el-col>
+                  <el-col :span="4"><span>{{this.phone}}</span></el-col>
                 </el-row>
                 <el-row class="identityNumber">
                   <el-col :span="3"><span>身份证号：</span></el-col>
-                  <el-col :span="4"><span>411081199802279039</span></el-col>
+                  <el-col :span="4"><span>{{this.identityNumber}}</span></el-col>
                 </el-row>
 
               </el-card>
@@ -38,14 +41,25 @@
 </template>
 
 <script>
-  import head from '../header/header'
     export default {
       name: "personalCenter",
       data(){
-        return {}
+        return {
+          nickName:'',
+          realName:'',
+          phone:'',
+          identityNumber:''
+        }
       },
       components:{
-        pchead:head
+      },
+      created(){
+        console.log(this.$store.getters.userInfo)
+        this.realName=this.$store.getters.userInfo.realName;
+        this.nickName=this.$store.getters.userInfo.nickName;
+        this.phone = this.$store.getters.userInfo.phone;
+        this.identityNumber= this.$store.getters.userInfo.identityNumber;
+        console.log(this.$store.getters.userInfo)
       },
       methods:{
         goMyDonation(){
@@ -61,5 +75,14 @@
 <style scoped>
   .el-button{
     border: 1px solid #A8CE8C;
+  }
+  .back{
+    width: 46.5%;
+    padding: 1% 1% 1% 1%;
+    background: rgba(242, 242, 242, 0.498039215686275);
+    margin-left: 13.5%;
+  }
+  .backText{
+
   }
 </style>

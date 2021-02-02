@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "backstageLogin"
+        name: "projectDisplay"
     }
 </script>
 

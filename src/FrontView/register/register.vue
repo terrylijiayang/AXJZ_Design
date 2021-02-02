@@ -14,7 +14,8 @@
             :file-list="avatar"
             :limit="1"
             :auto-upload="false"
-            list-type="picture">
+            list-type="picture"
+            >
             <el-button size="small" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip">请选择上传头像，只能上传jpg/png文件，且不超过500kb</div>
           </el-upload>
@@ -81,11 +82,11 @@
         </el-form>
       </div>
       <!--<div class="text item clearfix">-->
-        <!--<el-alert v-for="remark in alerts.remarks" :key="remark.title"-->
-                  <!--v-bind:title="remark.title"-->
-                  <!--type="info"-->
-                  <!--v-bind:description="remark.content">-->
-        <!--</el-alert>-->
+      <!--<el-alert v-for="remark in alerts.remarks" :key="remark.title"-->
+      <!--v-bind:title="remark.title"-->
+      <!--type="info"-->
+      <!--v-bind:description="remark.content">-->
+      <!--</el-alert>-->
       <!--</div>-->
     </el-card>
   </div>
@@ -99,104 +100,104 @@
   import {Msg} from "../../tool/message";
 
   export default {
-      name: "register",
-      data(){
-        return{
-          isPassword:'',
-          avatar: [],
-          registerForm:{
-            avatarPath:'',
-            phone:'',
-            nickName:'',
-            realName:'',
-            identityNumber:'',
-            password:'',
-          },
-          rules:{
-            nickName: [
-              {required: true, message: '请输入昵称', trigger: 'blur'},
-              // {validator: utils.validateString(0, 1000, /^.*$/, "输入的数据不正确，请检查"), trigger: 'blur'},
-            ],
-            phone: [
-              {required: true, message: '请输入联系电话', trigger: 'blur'},
-              // {validator: utils.validateString(0, 1000, /^1[3|4|5|7|8]\d{9}$/, "输入的数据不正确，请检查"), trigger: 'blur'},
-            ],
-            realName: [
-              {required: true, message: '请输入真实姓名', trigger: 'blur'},
-              // {validator: utils.validateString(0, 1000, /^.*$/, "输入的数据不正确，请检查"), trigger: 'blur'},
-            ],
-            identityNumber: [
-              {required: true, message: '请输入身份证号', trigger: 'blur'},
-              // {validator: utils.validateString(0, 1000, /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/, "输入的数据不正确，请检查"), trigger: 'blur'},
-            ],
-            password: [
-              {required: true, message: '请输入密码', trigger: 'blur'},
-              {validator: utils.validateString(0, 1000, /^.*$/, "输入的数据不正确，请检查"), trigger: 'blur'},
-            ],
-            isPassword: [
-              {required: true, message: '请再次输入密码', trigger: 'blur'},
-              {validator: this.checkPassword(0, 1000, /^.*$/, "两次输入的密码不一致，请重新输入"), trigger: 'blur'},
-            ],
-          }
+    name: "register",
+    data(){
+      return{
+        isPassword:'',
+        avatar: [],
+        registerForm:{
+          avatarPath:'',
+          phone:'',
+          nickName:'',
+          realName:'',
+          identityNumber:'',
+          password:'',
+        },
+        rules:{
+          nickName: [
+            {required: true, message: '请输入昵称', trigger: 'blur'},
+            // {validator: utils.validateString(0, 1000, /^.*$/, "输入的数据不正确，请检查"), trigger: 'blur'},
+          ],
+          phone: [
+            {required: true, message: '请输入联系电话', trigger: 'blur'},
+            // {validator: utils.validateString(0, 1000, /^1[3|4|5|7|8]\d{9}$/, "输入的数据不正确，请检查"), trigger: 'blur'},
+          ],
+          realName: [
+            {required: true, message: '请输入真实姓名', trigger: 'blur'},
+            // {validator: utils.validateString(0, 1000, /^.*$/, "输入的数据不正确，请检查"), trigger: 'blur'},
+          ],
+          identityNumber: [
+            {required: true, message: '请输入身份证号', trigger: 'blur'},
+            // {validator: utils.validateString(0, 1000, /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/, "输入的数据不正确，请检查"), trigger: 'blur'},
+          ],
+          password: [
+            {required: true, message: '请输入密码', trigger: 'blur'},
+            {validator: utils.validateString(0, 1000, /^.*$/, "输入的数据不正确，请检查"), trigger: 'blur'},
+          ],
+          isPassword: [
+            {required: true, message: '请再次输入密码', trigger: 'blur'},
+            {validator: this.checkPassword(0, 1000, /^.*$/, "两次输入的密码不一致，请重新输入"), trigger: 'blur'},
+          ],
         }
-      },
+      }
+    },
     watch:{
     },
-      methods: {
-        returnLogin(){
-          this.$router.push({path:'/login'});
-        },
-        handleRemove(file, fileList) {
-          this.avatar = []
-          // console.log(this.registerForm.imageFile)
-        },
-        handleChange(file,fileList) {
-          this.avatar = fileList;
-        },
-        checkPassword(min, max, pattern, patternMessage) {//验证密码是否一致
-          var min = min;
-          var max = max;
-          return (rule, value, callback) => {
+    methods: {
+      returnLogin(){
+        this.$router.push({path:'/'});
+      },
+      handleRemove(file, fileList) {
+        this.avatar = []
+        // console.log(this.registerForm.imageFile)
+      },
+      handleChange(file,fileList) {
+        this.avatar = fileList;
+      },
+      checkPassword(min, max, pattern, patternMessage) {//验证密码是否一致
+        var min = min;
+        var max = max;
+        return (rule, value, callback) => {
 
-            var newValue = value;
-            setTimeout(() => {
-              if (!newValue) {
-                if (min == 0) {
-                  callback();
-                  return
-                }
-                else {
-                  return callback(new Error('不能为空'));
-                }
-              }
-
-              var v1 = newValue.trim();
-              var adminPassword = document.getElementById("password").value;
-              if (adminPassword != v1) {
-                callback(new Error(patternMessage));
-                return;
+          var newValue = value;
+          setTimeout(() => {
+            if (!newValue) {
+              if (min == 0) {
+                callback();
+                return
               }
               else {
-                callback();
+                return callback(new Error('不能为空'));
               }
-            })
-          }
-        },
-        submitRegisterForm(){
-          this.$refs['registerForm'].validate((valid) => {
-            if(valid){
-              let data = this.registerForm;
-              delete data.isPassword;
-              registerService.register(this.registerForm,this.avatar).then((res) => {
-                Msg.info(res.data)
-              }).catch((err) => {
+            }
 
-              })
+            var v1 = newValue.trim();
+            var adminPassword = document.getElementById("password").value;
+            if (adminPassword != v1) {
+              callback(new Error(patternMessage));
+              return;
+            }
+            else {
+              callback();
             }
           })
         }
+      },
+      submitRegisterForm(){
+        this.$refs['registerForm'].validate((valid) => {
+          if(valid){
+            let data = this.registerForm;
+            delete data.isPassword;
+            registerService.register(this.registerForm,this.avatar).then((res) => {
+              Msg.info(res.data)
+            }).catch((err) => {
+
+            })
+          }
+        })
       }
     }
+  }
 </script>
 
 <style scoped>
@@ -205,7 +206,6 @@
     line-height: 5;
     margin-left: 20px;
   }
-
 </style>
 <style>
   .register .upload-demo{

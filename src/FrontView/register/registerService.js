@@ -8,3 +8,4 @@ export class registerService{
     return servers.connection('POST','/user/register',registerForm,files);
   }
 }
+
