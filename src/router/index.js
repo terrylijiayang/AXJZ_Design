@@ -10,7 +10,6 @@ import Role from '../BackstageView/main/user/role'
 import Menu from '../BackstageView/main/user/menu'
 import Task from '../BackstageView/main/task'
 Vue.use(Router)
-
 const router = new Router({
   routes: [
     {
@@ -37,38 +36,37 @@ const router = new Router({
         {
           path: '/index',
           name: 'BackProject',
-          component: () => import('../FrontView/main/homepage'),
+          component: () => import('../FrontView/main/homepage')
         },
         {
           path: '/projectDetail',
           name: 'ProjectDetail',
-          component: () => import('../FrontView/main/projectDetail'),
+          component: () => import('../FrontView/main/projectDetail')
         },
         {
           path: '/donate',
           name: 'Donate',
-          component: () => import('../FrontView/main/donate'),
+          component: () => import('../FrontView/main/donate')
         },
         {
           path: '/myDonation',
           name: 'MyDonation',
-          component: () => import('../FrontView/main/myDonation'),
+          component: () => import('../FrontView/main/myDonation')
         },
         {
           path: '/myApplication',
           name: 'MyApplication',
-          component: () => import('../FrontView/main/myApplication'),
+          component: () => import('../FrontView/main/myApplication')
         },
         {
           path: '/application',
           name: 'Application',
-          component: () => import('../FrontView/main/application'),
+          component: () => import('../FrontView/main/application')
         },
-
         {
           path: '/personalCenter',
           name: 'PersonalCenter',
-          component: () => import('../FrontView/main/personalCenter'),
+          component: () => import('../FrontView/main/personalCenter')
         }
       ]
     }, {
@@ -84,7 +82,7 @@ const router = new Router({
         {
           path: '/backOperator',
           name: 'BackOperator',
-          component: () => import('../BackstageView/main/operator'),
+          component: () => import('../BackstageView/main/operator')
         },
         {
           path: '/backProject',
@@ -120,16 +118,14 @@ const router = new Router({
           path: '/backMenu',
           name: 'BackUser',
           component: Menu
-        }]
+        }
+      ]
     }
-
-
-
   ]
 })
 
-router.afterEach((to,from,next) => {
-  document.querySelector("body").setAttribute("style", "overflow: auto !important;")
-});
+router.afterEach((to, from, next) => {
+  document.querySelector('body').setAttribute('style', 'overflow: auto !important;')
+})
 
 export default router;

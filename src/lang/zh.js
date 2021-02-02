@@ -1,6 +1,6 @@
 export default {
   author: {
-    name: '喻'
+    name: 'joya'
   },
   login: {
     title: '后台管理系统',
